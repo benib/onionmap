@@ -1,0 +1,90 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>OnionMap.io :: A Map of TOR Relays</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- build:css styles/onionmap.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <link rel="stylesheet" href="bower_components/leaflet.markerclusterer/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    </head>
+    <body>
+
+        <aside>
+            <h1>OnionMap</h1>
+            <p>shows Tor Relays on a Map<br/> <a href="about.html">about</a></p>
+            <p>
+                Filtered Relays: <span id="filteredRelaysCount"></span>
+            <p>
+
+            <form id="filters" action="#">
+                <section>
+                    <h2>Search</h2>
+                    <div>
+                        <label for="query">Query</label>
+                        <input type="text" id="query">
+                    </div>
+                </section>
+                <section>
+                    <h2>Limit</h2>
+                    <div>
+                        10<input type="range" id="limit" min="1" max="1000" value="10">1000
+                    </div>
+                </section>
+                <section>
+                    <h2>Filters</h2>
+                    <div>
+                        <label for="flag">Flag</label>
+                        <select id="flag">
+                            <option>All</option>
+                            <option>Exit</option>
+                            <option selected="selected">Fast</option>
+                            <option>Running</option>
+                            <option>Stable</option>
+                            <option>BadExit</option>
+                            <option>Authority</option>
+                            <option>Guard</option>
+                            <option>HSDir</option>
+                            <option>Named</option>
+                            <option>V2Dir</option>
+                            <option>Valid</option>
+                            <option>Unnamed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="as">AS Number</label>
+                        <input type="number" id="as">
+                    </div>
+                </section>
+            </form>
+
+        </aside>
+        <div id="map"></div>
+
+        <script src="//cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+        <!-- build:js scripts/onionmap.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <!-- endbower -->
+        <script src="bower_components/leaflet.markerclusterer/src/MarkerClusterGroup.js"></script>
+        <script src="bower_components/leaflet.markerclusterer/src/DistanceGrid.js"></script>
+        <script src="bower_components/leaflet.markerclusterer/src/MarkerCluster.js"></script>
+        <script src="bower_components/leaflet.markerclusterer/src/MarkerCluster.QuickHull.js"></script>
+        <script src="bower_components/leaflet.markerclusterer/src/MarkerCluster.Spiderfier.js"></script>
+
+        <script src="scripts/map.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

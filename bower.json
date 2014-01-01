@@ -1,0 +1,9 @@
+{
+  "name": "onionmap",
+  "private": true,
+  "dependencies": {
+    "leaflet.markerclusterer": "*",
+    "foundation": "~5.0.2",
+    "jquery": "~2.0.3"
+  }
+}
