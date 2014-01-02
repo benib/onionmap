@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>OnionMap.io :: A Map of TOR Relays</title>
+        <title>OnionMap.io :: Tor Relay Information on a Map</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- build:css(.tmp) styles/main.css -->
@@ -14,17 +14,17 @@
         <!-- endbuild -->
     </head>
     <body>
-
+        <aside>
+            <h1>OnionMap</h1>
+            <p>Tor Relay Information on a Map<br/> <a href="about.html">about</a></p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Single Relay Map</a></li>
+                    <li><a href="exitProbability.html">Exit Probability Heatmap</a></li>
+                </ul>
+            </nav>
+        </aside>
         <article>
-            <h1>OnionMap.io</h1>
-            <section>
-                <p>
-                    OnionMap is a Tor Relay Map. It is in an early stage and will evolve in the future.
-                </p>
-                <p>
-                    <a href="index.html">Go to the Map</a>
-                </p>
-            </section>
             <section>
                 <h2>Sourcecode</h2>
                 <p>
@@ -35,7 +35,8 @@
                 <h2>Datasources</h2>
                 <ul>
                     <li><a href="https://onionoo.torproject.org/">Onionoo API</a> for Relay Information</li>
-                    <li><a href="https://www.mapquest.com/">MapQuest</a> for the MapTiles</li>
+                    <li><a href="https://www.mapquest.com/">MapQuest</a> for MapTiles</li>
+                    <li><a href="http://stamen.com">Stamen</a> for MapTiles</li>
                     <li><a href="https://osm.org">OpenStreetMap</a> for the MapData</li>
                     <li><a href="http://www.telize.com">Telize.com</a> as an API to the GeoLite2 data by <a href="http://www.maxmind.com">MaxMind</a></li>
                 </ul>

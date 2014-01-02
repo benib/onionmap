@@ -33,12 +33,10 @@
         this._ip          = data.a[0];
         this._fingerprint = data.f;
 
-        this._loadMarker();
-
         return this;
     }
 
-    Relay.prototype._loadMarker = function() {
+    Relay.prototype.loadMarker = function() {
         var that = this;
         $.getJSON('http://www.telize.com/geoip/' + that._ip + '?callback=?', function(geoipData) {
             if (geoipData.latitude !== undefined && geoipData.longitude !== undefined) {
@@ -55,7 +53,9 @@
         var that = this;
         $.getJSON('https://onionoo.torproject.org/details?search=' + that._fingerprint, function(detailData) {
             that._detailData = detailData.relays[0];
-            marker.populatePopup(that);
+            if (marker !== undefined) {
+                marker.populatePopup(that);
+            }
         });
     };
 
@@ -85,6 +85,13 @@
 
     Relay.prototype.getMarker = function() {
         return this._marker;
+    };
+
+    Relay.prototype.hasMarker = function() {
+        if (this._marker !== undefined) {
+            return true;
+        }
+        return false;
     };
 
     Relay.prototype.setMatchesFilters = function(matchesFilters) {

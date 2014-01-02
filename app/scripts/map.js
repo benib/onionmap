@@ -33,7 +33,12 @@ $(function() {
             });
             
             $.each(data.relays, function( key, rawRelay ) {
-                relays.push(window.relay.getInstance(rawRelay).setMatchesFilters(true));
+                var r = window.relay.getInstance(rawRelay);
+                r.setMatchesFilters(true);
+                if (r.hasMarker() === false) {
+                    r.loadMarker();
+                }
+                relays.push(r);
             });
 
             $.each(relays, function(k, r) {
@@ -45,8 +50,6 @@ $(function() {
         });
 
     };
-
-    
 
     var applyFilter = function() {
         var form = this;

@@ -1,0 +1,63 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>OnionMap.io :: Tor Relay Information on a Map</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet.css" />
+
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <link rel="stylesheet" href="bower_components/leaflet.markerclusterer/dist/MarkerCluster.css" />
+        <link rel="stylesheet" href="bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css" />
+        <!-- endbuild -->
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        
+    </head>
+    <body>
+
+        <aside>
+            <h1>OnionMap</h1>
+            <p>Tor Relay Information on a Map<br/> <a href="about.html">about</a></p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Single Relay Map</a></li>
+                    <li><a href="exitProbability.html">Exit Probability Heatmap</a></li>
+                </ul>
+            </nav>
+            <p>
+                This map shows accumulated exit probability per country.
+                See the legend in the bottom right corner for values.
+            </p>
+            <p>
+                <h2>Top 10 Exit Countries</h2>
+                <ul id="topten">
+
+                </ul>
+            </p>
+        </aside>
+        <div id="map"></div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet.js"></script>
+
+        <!-- build:js scripts/exitProbMap.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <!-- endbower -->
+
+        <script src="scripts/Relay.js"></script>
+        <script src="scripts/exitProbabilityMap.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
