@@ -134,9 +134,9 @@ $(function() {
 
     var getPopupContent = function(relay) {
         return '<h4>' + relay.detail.nickname + '</h4>'+
+                '<a href="https://globe.torproject.org/#/relay/'+relay.f+'">View on Globe</a>'+
                 '<table>'+
                     '<tr><th>OR Address</th><td>' + relay.detail.or_addresses[0] + '</td></tr>'+
-                    '<tr><th>Fingerprint</th><td>' + relay.f + '</td></tr>'+
                     '<tr><th>AS Name</th><td>' + relay.detail.as_name + '</td></tr>'+
                     '<tr><th>AS Number</th><td>' + relay.detail.as_number + '</td></tr>'+
                     '<tr><th>Bandwitdh adv.</th><td>' + getNiceBandwidth(relay.detail.advertised_bandwidth) + '</td></tr>'+
