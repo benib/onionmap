@@ -83,6 +83,10 @@
         return this._latlng;
     };
 
+    Relay.prototype.getFingerprint = function() {
+        return this._fingerprint;
+    };
+
     Relay.prototype.getMarker = function() {
         return this._marker;
     };

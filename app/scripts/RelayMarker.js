@@ -20,7 +20,7 @@ L.RelayMarker = L.Marker.extend({
     populatePopup: function(r) {
 
         var content =   '<h4>' + r.get('nickname') + '</h4>'+
-                        '<a href="https://globe.torproject.org/#/relay/'+r.f+'">View on Globe</a>'+
+                        '<a href="https://globe.torproject.org/#/relay/'+r.getFingerprint()+'">View on Globe</a>'+
                         '<table>'+
                             '<tr><th>OR Address</th><td>' + r.get('or_addresses')[0] + '</td></tr>'+
                             '<tr><th>AS Name</th><td>' + r.get('as_name') + '</td></tr>'+
