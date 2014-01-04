@@ -33,15 +33,19 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Single Relay Map</a></li>
-                    <li><a href="exitProbability.html">Exit Probability Heatmap</a></li>
+                    <li><a href="heatmaps.html">Heatmaps</a></li>
                 </ul>
             </nav>
             <p>
-                This map shows accumulated exit probability per country.
-                See the legend in the bottom right corner for values.
+                Select Heatmap Type:
+                <select id="heatmapType">
+                    <option selected="selected">Exit Probability</option>
+                    <option>Guard Probability</option>
+                    <option>Middle Probability</option>
+                </select>
             </p>
             <p>
-                <h2>Top 10 Exit Countries</h2>
+                <h2>Top 10</h2>
                 <ul id="topten">
 
                 </ul>
@@ -51,13 +55,20 @@
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet.js"></script>
 
-        <!-- build:js scripts/exitProbMap.js -->
+        <!-- build:js scripts/heatmaps.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <!-- endbower -->
 
+        <script src="scripts/SimpleJavaScriptInheritance.js"></script>
         <script src="scripts/Relay.js"></script>
-        <script src="scripts/exitProbabilityMap.js"></script>
+        <script src="scripts/Heatmap.js"></script>
+        <script src="scripts/HeatmapRelayFlag.js"></script>
+        <script src="scripts/HeatmapExitProbability.js"></script>
+        <script src="scripts/HeatmapGuardProbability.js"></script>
+        <script src="scripts/HeatmapMiddleProbability.js"></script>
+        <script src="scripts/HeatmapLegend.js"></script>
+        <script src="scripts/heatmaps.js"></script>
         <!-- endbuild -->
 </body>
 </html>
