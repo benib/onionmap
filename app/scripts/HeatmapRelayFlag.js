@@ -4,13 +4,12 @@ var HeatmapRelayFlag = Heatmap.extend({
         var that = this;
 
         var apiUrl = 'https://onionoo.torproject.org/details?flag='+flag;
-        var probabilities = [];
+        var probabilities = {};
         
         $.getJSON(apiUrl, function(relayData) {
-
             $.each(relayData.relays, function(key, relay) {
                 var probability = relay[probabilityField] || 0;
-                var country = relay.country_name;
+                var country = relay.country;
 
                 if (probabilities[country] === undefined) {
                     probabilities[country] = 0;
@@ -21,7 +20,7 @@ var HeatmapRelayFlag = Heatmap.extend({
             });
 
             $.each(that.countryData.features, function(key, country) {
-                that.countryData.features[key].properties.probability = probabilities[country.properties.name] || 0;
+                that.countryData.features[key].properties.probability = probabilities[country.properties.iso_a2.toLowerCase()] || 0;
             });
 
             that.geojson = L.geoJson(that.countryData, {
