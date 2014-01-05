@@ -36,7 +36,16 @@ var HeatmapRelayFlag = Heatmap.extend({
                         dashArray: '3',
                         fillOpacity: 0.7
                     };
+                },
+
+                onEachFeature: function(feature, layer) {
+                    if (feature.properties) {
+                        var popupContent = '<h4>' + feature.properties.name + '</h4><p>Probability: ' + 
+                                           Math.round(feature.properties.probability*10000)/100 + '%</p>'; 
+                        layer.bindPopup(popupContent);
+                    }
                 }
+
             }).addTo(that.map);
 
             that.countryData.features.sort(function(a, b) {
