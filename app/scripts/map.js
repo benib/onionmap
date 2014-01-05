@@ -23,7 +23,7 @@ $(function() {
     var showRelays = function(filters,query,limit) {
         
         var apiUrl = getOnionooUri(filters,query,limit);
-
+        console.log(apiUrl);
         $.getJSON(apiUrl, function(data) {
 
             $('#filteredRelaysCount')[0].innerHTML = data.relays.length;
@@ -43,7 +43,9 @@ $(function() {
 
             $.each(relays, function(k, r) {
                 if (r.isMatchingFilters() === false) {
-                    markers.removeLayer(r.getMarker());
+                    if (r.hasMarker()) {
+                        markers.removeLayer(r.getMarker());
+                    }
                 }
             });
 
@@ -58,11 +60,23 @@ $(function() {
         //maybe the slider is still moving
         setTimeout(function() {
             var filters = [];
-            if ($(form).find('#flag')[0].value !== 'None') {
+            if ($(form).find('#running')[0].checked === true) {
+                filters.running = 'true';
+            }
+            if ($(form).find('#flag')[0].value !== 'All (no flag)') {
                 filters.flag = $(form).find('#flag')[0].value;
             }
             if ($(form).find('#as')[0].value > 0) {
                 filters.as = $(form).find('#as')[0].value;
+            }
+            if ($(form).find('#first_seen_days')[0].value) {
+                filters.first_seen_days = $(form).find('#first_seen_days')[0].value;
+            }
+            if ($(form).find('#last_seen_days')[0].value) {
+                filters.last_seen_days = $(form).find('#first_seen_days')[0].value;
+            }
+            if ($(form).find('#contact')[0].value) {
+                filters.contact = $(form).find('#contact')[0].value;
             }
             showRelays(filters, $('#query')[0].value, $('#limit')[0].value);
             $('#filters').one('change', applyFilter);
@@ -94,7 +108,5 @@ $(function() {
 
     
     var defaultFilters = [];
-    defaultFilters.flag = $('#flag')[0].value;
     showRelays(defaultFilters,'',$('#limit')[0].value);
-
 });
