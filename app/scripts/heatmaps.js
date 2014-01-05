@@ -26,6 +26,12 @@ $(function() {
                 case 'Middle Probability':
                     heatmaps[this.value] = new HeatmapMiddleProbability(map);
                     break;
+                case 'Advertised Exit Bandwidth':
+                    heatmaps[this.value] = new HeatmapBandwidthAdvertisedExit(map);
+                    break;
+                case 'Observed Exit Bandwidth':
+                    heatmaps[this.value] = new HeatmapBandwidthObservedExit(map);
+                    break;
                 default:
                     return;
             }
