@@ -1,6 +1,34 @@
 $(function() {
     'use strict';
 
+    var heatmaps = {
+        exitprobability: {
+            name: 'Exit Probability',
+            cn: HeatmapExitProbability,
+        },
+        guardprobability: {
+            name: 'Guard Probability',
+            cn: HeatmapGuardProbability,
+        },
+        middleprobability: {
+            name: 'Middle Probability',
+            cn: HeatmapMiddleProbability,
+        },
+        advertisedexitbw: {
+            name: 'Advertised Exit Bandwidth',
+            cn: HeatmapBandwidthAdvertisedExit,
+        },
+        observedexitbw: {
+            name: 'Observed Exit Bandwidth',
+            cn: HeatmapBandwidthObservedExit,
+        },
+    };
+
+    
+    $.each(heatmaps, function(key, heatmap) {
+        $('#heatmapType').append('<option value="'+ key +'">'+ heatmap.name +'</option>');
+    });
+
     var map = L.map('map').setView([14.12, 0.34], 3);
 
     L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
@@ -9,36 +37,25 @@ $(function() {
         styleId: 22677
     }).addTo(map);
 
-    var heatmaps = {};
-
     $('#heatmapType').on('change', function() {
+        location.hash = this.value;
         $.each(heatmaps, function(key, heatmap) {
-            heatmap.hide();
-        });
-        if (!(heatmaps[this.value] instanceof Heatmap)) {
-            switch (this.value) {
-                case 'Exit Probability':
-                    heatmaps[this.value] = new HeatmapExitProbability(map);
-                    break;
-                case 'Guard Probability':
-                    heatmaps[this.value] = new HeatmapGuardProbability(map);
-                    break;
-                case 'Middle Probability':
-                    heatmaps[this.value] = new HeatmapMiddleProbability(map);
-                    break;
-                case 'Advertised Exit Bandwidth':
-                    heatmaps[this.value] = new HeatmapBandwidthAdvertisedExit(map);
-                    break;
-                case 'Observed Exit Bandwidth':
-                    heatmaps[this.value] = new HeatmapBandwidthObservedExit(map);
-                    break;
-                default:
-                    return;
+            if (heatmap.instance instanceof Heatmap) {
+                heatmap.instance.hide();
             }
+        });
+        if (!(heatmaps[this.value].instance instanceof Heatmap)) {
+            heatmaps[this.value].instance = new heatmaps[this.value].cn();
         }
-        
-        heatmaps[this.value].show(map);
+        heatmaps[this.value].instance.show(map);
     });
+
+    if (location.hash) {
+        $('#heatmapType').val(location.hash.substring(1));
+    } else {
+        location.hash = 'exitprobability';
+        $('#heatmapType').val('exitprobability');
+    }
 
     $('#heatmapType').trigger('change');
 

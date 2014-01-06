@@ -31,11 +31,11 @@ var Heatmap = Class.extend({
     },
 
     loadData: function() {
-        throw new Error("not implemented");
+        throw new Error('not implemented');
     },
 
     getColor: function(value) {
-        throw new Error("not implemented");
+        throw new Error('not implemented');
     }
 
 });

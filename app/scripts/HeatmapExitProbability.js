@@ -13,7 +13,7 @@ var HeatmapExitProbability = HeatmapRelayValuesPerCountry.extend({
     },
 
     getRelayValueName: function() {
-        return 'Middle Probability';
+        return 'Exit Probability';
     },
 
     getRelayValueForPopup: function(value) {

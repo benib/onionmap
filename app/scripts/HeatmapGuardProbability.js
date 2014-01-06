@@ -13,7 +13,7 @@ var HeatmapGuardProbability = HeatmapRelayValuesPerCountry.extend({
     },
 
     getRelayValueName: function() {
-        return 'Middle Probability';
+        return 'Guard Probability';
     },
 
     getRelayValueForPopup: function(value) {
