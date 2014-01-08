@@ -20,14 +20,14 @@ var Heatmap = Class.extend({
     },
 
     hide: function() {
+        $('#topten')[0].innerHTML = '';
         try {
             this.map.removeLayer(this.geojson);
+        } catch(e) { }
+        try {
             this.legend.removeFrom(this.map);
             $('#topten')[0].innerHTML = '';
-        } catch(e) {
-
-        }
-        
+        } catch(e) { }
     },
 
     loadData: function() {

@@ -12,18 +12,13 @@ $(function() {
     var markers = new L.MarkerClusterGroup();
     map.addLayer(markers);
 
-    $(window).on('relay:markercreated', function(event,r) {
-        if (r.isMatchingFilters()) {
-            markers.addLayer(r.getMarker());
-        }
-    });
-
     var relays = [];
 
-    var showRelays = function(filters,query,limit) {
+    var showRelays = function(filters,query, limit) {
         
-        var apiUrl = getOnionooUri(filters,query,limit);
-        console.log(apiUrl);
+        $('#map').addClass('loading');
+
+        var apiUrl = getOnionooUri(filters,query, limit);
         $.getJSON(apiUrl, function(data) {
 
             $('#filteredRelaysCount')[0].innerHTML = data.relays.length;
@@ -35,8 +30,8 @@ $(function() {
             $.each(data.relays, function( key, rawRelay ) {
                 var r = window.relay.getInstance(rawRelay);
                 r.setMatchesFilters(true);
-                if (r.hasMarker() === false) {
-                    r.loadMarker();
+                if (r.hasMarker() === true) {
+                    markers.addLayer(r.getMarker());
                 }
                 relays.push(r);
             });
@@ -49,13 +44,14 @@ $(function() {
                 }
             });
 
+            $('#map').removeClass('loading');
+
         });
 
     };
 
     var applyFilter = function() {
         var form = this;
-
         //wait with reading the values from the form,
         //maybe the slider is still moving
         setTimeout(function() {
@@ -85,7 +81,7 @@ $(function() {
 
     $('#filters').one('change', applyFilter);
 
-    var getOnionooUri = function(filters,query,limit) {
+    var getOnionooUri = function(filters,query, limit) {
         var filterParamsString = '&';
         for(var filterParam in filters){
             if(filters.hasOwnProperty(filterParam)){
@@ -103,7 +99,7 @@ $(function() {
             searchParamString = '&search='+query;
         }
 
-        return 'https://onionoo.torproject.org/summary?limit='+ limit + searchParamString + filterParamsString + '&order=-consensus_weight';
+        return 'https://onionoo.torproject.org/details?limit='+ limit + searchParamString + filterParamsString + '&order=-consensus_weight';
     };
 
     

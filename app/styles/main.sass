@@ -78,3 +78,17 @@ nav
     section
         div
             padding-bottom: 10px
+
+#map.loading
+    opacity: 0.2
+    &:after
+        content: 'loading...'
+        display: block
+        position: absolute
+        top: 50%
+        left: 45%
+        color: black
+        font-size: 30px
+        width: 10%
+        margin-top: -15px
+        text-align: center

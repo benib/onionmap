@@ -44,16 +44,16 @@
 
             <form id="filters" action="#">
                 <section>
+                    <h2>Limit</h2>
+                    <div>
+                        1<input type="range" id="limit" min="1" max="10000" value="100">10000
+                    </div>
+                </section>
+                <section>
                     <h2>Search</h2>
                     <div>
                         <label for="query">Query</label>
                         <input type="text" id="query">
-                    </div>
-                </section>
-                <section>
-                    <h2>Limit</h2>
-                    <div>
-                        1<input type="range" id="limit" min="1" max="1000" value="10">1000
                     </div>
                 </section>
                 <section>
@@ -100,7 +100,7 @@
             </form>
 
         </aside>
-        <div id="map"></div>
+        <div id="map" class="loading"></div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.1/leaflet.js"></script>
 

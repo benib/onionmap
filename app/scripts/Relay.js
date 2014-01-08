@@ -26,45 +26,30 @@
 
     var _latlng;
 
-    var _detailData;
+    var _data;
 
     function Relay(data) {
-
-        this._ip          = data.a[0];
-        this._fingerprint = data.f;
-
+        this._ip          = data.or_addresses[0].split(':')[0];
+        this._fingerprint = data.fingerprint;
+        this._latlng      = L.latLng(data.latitude, data.longitude);
+        this._data        = data;
+        this.loadMarker();
         return this;
     }
 
     Relay.prototype.loadMarker = function() {
-        var that = this;
-        $.getJSON('http://www.telize.com/geoip/' + that._ip + '?callback=?', function(geoipData) {
-            if (geoipData.latitude !== undefined && geoipData.longitude !== undefined) {
-                that._latlng = L.latLng(geoipData.latitude, geoipData.longitude);
-
-                that._marker = new L.RelayMarker(that);
-
-                $(window).trigger('relay:markercreated', that);
-            }
-        });
-    };
-
-    Relay.prototype.loadDetails = function(marker) {
-        var that = this;
-        $.getJSON('https://onionoo.torproject.org/details?search=' + that._fingerprint, function(detailData) {
-            that._detailData = detailData.relays[0];
-            if (marker !== undefined) {
-                marker.populatePopup(that);
-            }
-        });
+        if (this._latlng) {
+            this._marker = new L.RelayMarker(this);
+            this._marker.populatePopup(this);
+        }
     };
 
     Relay.prototype.get = function(field) {
-        return this._detailData[field];
+        return this._data[field];
     };
 
     Relay.prototype.getNiceBandwidth = function() {
-        var bps = this._detailData.advertised_bandwidth;
+        var bps = this._data.advertised_bandwidth;
         if (bps > Math.pow(10,6)) {
             return this._getRoundedNumber(bps/Math.pow(10,6),2) + ' MB/s';
         }
