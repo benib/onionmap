@@ -1,6 +1,8 @@
 $(function() {
     'use strict';
 
+    L.Icon.Default.imagePath = '/vendor/images/';
+
     var heatmaps = {
         exitprobability: {
             name: 'Exit Probability',

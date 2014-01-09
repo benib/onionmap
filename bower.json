@@ -5,5 +5,8 @@
     "leaflet.markerclusterer": "*",
     "foundation": "~5.0.2",
     "jquery": "~2.0.3"
+  },
+  "devDependencies": {
+    "leaflet": "~0.7.1"
   }
 }

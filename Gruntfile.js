@@ -162,6 +162,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
+                        '<%= yeoman.dist %>/vendor/{,*/}*.js',
                         '<%= yeoman.dist %>/scripts/{,*/}*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
                         '<%= yeoman.dist %>/images/{,*/}*.{gif,jpeg,jpg,png,webp}',
@@ -248,6 +249,11 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                         'data/*.*'
                     ]
+                }, {
+                    expand: true,
+                    flatten: true,
+                    src: '<%= yeoman.app %>/bower_components/leaflet/dist/images/*',
+                    dest: '<%= yeoman.dist %>/vendor/images/'
                 }]
             },
             styles: {

@@ -1,6 +1,8 @@
 $(function() {
     'use strict';
 
+    L.Icon.Default.imagePath = '/vendor/images/';
+
     var map = L.map('map').setView([14.12, 0.34], 3);
 
     L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
