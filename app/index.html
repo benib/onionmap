@@ -44,8 +44,11 @@
             <form id="filters" action="#">
                 <section>
                     <h2>Limit</h2>
-                    <div>
-                        1<input type="range" id="limit" min="1" max="10000" value="100">10000
+                    <div id="limit">
+                        <input type="radio" name="limit" value="100">100
+                        <input type="radio" name="limit" value="1000" checked="checked">1000
+                        <input type="radio" name="limit" value="5000">5000
+                        <input type="radio" name="limit" value="10000">10000
                     </div>
                 </section>
                 <section>

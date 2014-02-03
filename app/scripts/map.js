@@ -54,31 +54,27 @@ $(function() {
 
     var applyFilter = function() {
         var form = this;
-        //wait with reading the values from the form,
-        //maybe the slider is still moving
-        setTimeout(function() {
-            var filters = [];
-            if ($(form).find('#running')[0].checked === true) {
-                filters.running = 'true';
-            }
-            if ($(form).find('#flag')[0].value !== 'All (no flag)') {
-                filters.flag = $(form).find('#flag')[0].value;
-            }
-            if ($(form).find('#as')[0].value > 0) {
-                filters.as = $(form).find('#as')[0].value;
-            }
-            if ($(form).find('#first_seen_days')[0].value) {
-                filters.first_seen_days = $(form).find('#first_seen_days')[0].value;
-            }
-            if ($(form).find('#last_seen_days')[0].value) {
-                filters.last_seen_days = $(form).find('#first_seen_days')[0].value;
-            }
-            if ($(form).find('#contact')[0].value) {
-                filters.contact = $(form).find('#contact')[0].value;
-            }
-            showRelays(filters, $('#query')[0].value, $('#limit')[0].value);
-            $('#filters').one('change', applyFilter);
-        },500);
+        var filters = [];
+        if ($(form).find('#running')[0].checked === true) {
+            filters.running = 'true';
+        }
+        if ($(form).find('#flag')[0].value !== 'All (no flag)') {
+            filters.flag = $(form).find('#flag')[0].value;
+        }
+        if ($(form).find('#as')[0].value > 0) {
+            filters.as = $(form).find('#as')[0].value;
+        }
+        if ($(form).find('#first_seen_days')[0].value) {
+            filters.first_seen_days = $(form).find('#first_seen_days')[0].value;
+        }
+        if ($(form).find('#last_seen_days')[0].value) {
+            filters.last_seen_days = $(form).find('#first_seen_days')[0].value;
+        }
+        if ($(form).find('#contact')[0].value) {
+            filters.contact = $(form).find('#contact')[0].value;
+        }
+        showRelays(filters, $('#query')[0].value, $('input[name=limit]:checked').val());
+        $('#filters').one('change', applyFilter);
     };
 
     $('#filters').one('change', applyFilter);
@@ -106,5 +102,5 @@ $(function() {
 
     
     var defaultFilters = [];
-    showRelays(defaultFilters,'',$('#limit')[0].value);
+    showRelays(defaultFilters,'',$('input[name=limit]:checked').val());
 });
