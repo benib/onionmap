@@ -15,7 +15,10 @@ var HeatmapRelayValuesPerCountry = Heatmap.extend({
                     values[country] = 0;
                 }
 
-                values[country] = values[country] + relayValue;
+                //values < 0 are considered invalid
+                if (relayValue >= 0) {
+                    values[country] = values[country] + relayValue;
+                }
 
             });
 
